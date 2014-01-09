@@ -23,7 +23,9 @@ sub start {
 	my $self = shift;
 	no strict qw/refs/;
 
-	$self->orig(\&{$self->name});
+	die("henk");
+
+	$self->orig(*{$self->name}{CODE});
 	*{$self->name} = $self->code;
 }
 

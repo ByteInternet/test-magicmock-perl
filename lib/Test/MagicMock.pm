@@ -28,8 +28,10 @@ sub mock {
 		die("Cannot mock '$fullname' twice, sorry.");
 	}
 
-	my $mock = Test::MagicMock::Patcher->new($fullname, $code);
-	$self->mocks->{$fullname} = $mock;
+	my $patcher = Test::MagicMock::Patcher->new($fullname, $code);
+	   $patcher->start();
+
+	$self->mocks->{$fullname} = $patcher;
 }
 
 1;

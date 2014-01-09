@@ -28,6 +28,7 @@ sub test_magicmock_mock_ends_at_end_of_lexical_scope : Test(2) {
 		my $mock = $fs->mock('croak', sub { return 1; });
 
 		F::SimplePackage::croak();
+
 		ok(1); # survived
 	}
 
@@ -48,7 +49,7 @@ sub test_magicmock_mock_mocks_nonexistant_sub : Test(2) {
 		F::SimplePackage::nonexistant();
 	}
 
-	dies_ok(sub { F::SimplePackage::nonexistant(); });
+	dies_ok(sub { F::SimplePackage::nonexistant(); }, "call should result in die");
 	
 }
 
