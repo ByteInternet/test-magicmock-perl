@@ -61,3 +61,13 @@ sub test_magicmock_mock_mocks_two_subs : Test(2) {
 	F::SimplePackage::croak();
 	F::SimplePackage::nonexistant();
 }
+
+sub test_magicmock_mock_stores_patcher_in_hash : Test(1) {
+	my $fs = Test::MagicMock->new("F::SimplePackage");
+	my $patcher = $fs->mock('croak', sub { return 1; });
+	is($fs->mocks->{"croak"}, $patcher);
+}
+
+
+
+	

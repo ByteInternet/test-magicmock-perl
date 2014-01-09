@@ -24,14 +24,14 @@ sub mock {
 	my ($self, $name, $code) = @_;
 	my $fullname = sprintf("%s::%s", $self->package, $name);
 
-	if ($self->mocks->{$fullname}) {
+	if ($self->mocks->{$name}) {
 		die("Cannot mock '$fullname' twice, sorry.");
 	}
 
 	my $patcher = Test::MagicMock::Patcher->new($fullname, $code);
 	   $patcher->start();
 
-	$self->mocks->{$fullname} = $patcher;
+	$self->mocks->{$name} = $patcher;
 }
 
 1;
